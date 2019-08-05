@@ -1,5 +1,6 @@
 package jeenod.example.demo.service.Impl;
 
+import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 import jeenod.example.demo.repository.UserRepository;
 import jeenod.example.demo.service.UserService;
@@ -25,6 +26,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<SimpleUserDTO> getAllSimpleUsers() {
+        return repository.getSimpleList();
+    }
+
+    @Override
     public UserDO getUserById(Integer id) {
         return repository.getById(id);
     }
@@ -37,6 +43,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDO> getUsersByGender(Boolean ismale) {
         return repository.getListByMale(ismale);
+    }
+
+    @Override
+    public void update(String name, Integer age) {
+        repository.updateAgeByName(name, age);
     }
 
 

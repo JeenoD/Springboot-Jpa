@@ -1,9 +1,12 @@
 package jeenod.example.demo.repository;
 
+import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -42,4 +45,21 @@ public interface UserRepository extends JpaRepository<UserDO, Long> {
      */
     @Query("from UserDO where male = :ismale")
     List<UserDO> getListByMale(Boolean ismale);
+
+    /**
+     * JPQL format to realise the map to SimpleUserDTO
+     */
+    @Query("select new jeenod.example.demo.pojo.SimpleUserDTO(u.name, u.age) from UserDO u")
+    List<SimpleUserDTO> getSimpleList();
+
+    /**
+     * JPQL format to update user's age
+     * @param name
+     * @param age
+     */
+    @Transactional(rollbackOn = Exception.class)
+    @Modifying
+    @Query("update UserDO u set u.age = ?2 where u.name = ?1")
+    void updateAgeByName(String name, int age);
+
 }

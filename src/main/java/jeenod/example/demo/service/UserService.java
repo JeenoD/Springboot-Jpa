@@ -1,5 +1,6 @@
 package jeenod.example.demo.service;
 
+import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 
 import java.util.List;
@@ -15,6 +16,12 @@ public interface UserService {
      * @return
      */
     List<UserDO> getAllUsers();
+
+    /**
+     * get all users (SimpleUserDTO) in db
+     * @return
+     */
+    List<SimpleUserDTO> getAllSimpleUsers();
 
     /**
      * get user info by id
@@ -36,4 +43,11 @@ public interface UserService {
      * @return List<UserDO>
      */
     List<UserDO> getUsersByGender(Boolean ismale);
+
+    /**
+     * update user's age by name
+     * @param name
+     * @param age
+     */
+    void update(String name, Integer age);
 }

@@ -11,7 +11,7 @@ import javax.persistence.*;
  * @date: 2019/7/9 17:02
  */
 @Entity
-@Table(name = "User") // db table corresponding to the obj
+@Table(name = "user") // db table corresponding to the obj
 @Data   // Getter & Setter
 public class UserDO {
     @Id

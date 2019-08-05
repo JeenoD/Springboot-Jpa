@@ -1,8 +1,7 @@
 package jeenod.example.demo.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
+import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 import jeenod.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,10 @@ public class MyController {
         return service.getAllUsers();
     }
 
+    @GetMapping("/simplified/users")
+    @ApiOperation("get all simplified users")
+    public List<SimpleUserDTO> getAllSimpleUsers() { return service.getAllSimpleUsers();}
+
 
     @GetMapping("/user/{id}")
     // here should be apiParam, not ApiImplicitParam(cannot transfer id from String to Integer, still dont find out the reason)
@@ -48,5 +51,14 @@ public class MyController {
     @ApiParam(name = "male", value = "choose male?", required = true)
     public List<UserDO> getUSersByGender(@PathVariable("male") Boolean male){
         return service.getUsersByGender(male);
+    }
+
+    /**
+     * actually, it would be better for POST method, but its not our point here.
+     */
+    @GetMapping("/user")
+    @ApiOperation("update one's age by name")
+    public void updateAgeByName(String name, Integer age){
+        service.update(name, age);
     }
 }
