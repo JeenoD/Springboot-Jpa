@@ -1,25 +1,26 @@
 package jeenod.example.demo.service;
 
+import jeenod.example.demo.pojo.MilkAcceptDO;
 import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 
 import java.util.List;
 
 /**
- * @author: Jeeno
- * @mail: jeenocruise@gmail.com
- * @date: 2019/7/9 17:16
+ * @author Jeeno
+ * @mail jeenocruise@gmail.com
+ * @date 2019/7/9 17:16
  */
 public interface UserService {
     /**
      * get all users in db
-     * @return
+     * @return List
      */
     List<UserDO> getAllUsers();
 
     /**
      * get all users (SimpleUserDTO) in db
-     * @return
+     * @return List
      */
     List<SimpleUserDTO> getAllSimpleUsers();
 
@@ -46,8 +47,17 @@ public interface UserService {
 
     /**
      * update user's age by name
-     * @param name
-     * @param age
+     * @param name username
+     * @param age age
      */
     void update(String name, Integer age);
+
+    /**
+     * record accept information
+     * @param name username
+     * @param address address
+     * @param num bottles
+     * @return MilkAcceptDTO
+     */
+    MilkAcceptDO sendMilk(String name, String address, Long num);
 }

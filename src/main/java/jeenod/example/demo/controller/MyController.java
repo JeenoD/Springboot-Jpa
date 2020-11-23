@@ -1,6 +1,7 @@
 package jeenod.example.demo.controller;
 
 import io.swagger.annotations.*;
+import jeenod.example.demo.pojo.MilkAcceptDO;
 import jeenod.example.demo.pojo.SimpleUserDTO;
 import jeenod.example.demo.pojo.UserDO;
 import jeenod.example.demo.service.UserService;
@@ -10,9 +11,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author: Jeeno
- * @mail: jeenocruise@gmail.com
- * @date: 2019/7/9 17:07
+ * @author Jeeno
+ * @mail jeenocruise@gmail.com
+ * @date 2019/7/9 17:07
  */
 @Api(tags="APIs")
 @RestController
@@ -60,5 +61,11 @@ public class MyController {
     @ApiOperation("update one's age by name")
     public void updateAgeByName(String name, Integer age){
         service.update(name, age);
+    }
+
+    @GetMapping("/milk")
+    @ApiOperation("the record of acceptance of milk")
+    public MilkAcceptDO milkAccept(String name, String address, Long bottles) {
+        return service.sendMilk(name, address, bottles);
     }
 }
